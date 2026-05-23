@@ -11,7 +11,6 @@ import MarketSection from "../components/MarketSection";
 import Skeleton from "../components/Skeleton";
 import TradePageSkeleton from "../components/TradePageSkeleton";
 import { DEFAULT_FEATURED_MARKET_SYMBOLS } from "../constants/markets";
-import { useSmoothLoading } from "../hooks/useSmoothLoading";
 import { setRequestedSymbol } from "../store/slices/appSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import {
@@ -60,10 +59,7 @@ const TradePage = () => {
   const referencePrice = useAppSelector(selectReferencePrice);
   const selectedSymbol = useAppSelector(selectSelectedSymbol);
   const selectedMarket = useAppSelector(selectSelectedMarket);
-  const showPageSkeleton = useSmoothLoading(
-    !hasHydratedMarkets || !hasSelectedMarketSnapshot,
-    { delayMs: 0 },
-  );
+  const showPageSkeleton = !hasHydratedMarkets || !hasSelectedMarketSnapshot;
 
   const handleSelectSymbol = useCallback(
     (symbol: string) => dispatch(setRequestedSymbol(symbol)),
@@ -122,7 +118,7 @@ const TradePage = () => {
             <MobileDepthTabs />
           </div>
 
-          <div className="order-3 hidden xl:order-1 xl:block lg:sticky lg:top-4">
+          <div className="order-3 hidden xl:order-1 xl:block xl:sticky xl:top-4">
             <MarketSection
               featuredSymbols={featuredSymbols}
               markets={markets}

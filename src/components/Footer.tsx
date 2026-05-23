@@ -38,16 +38,13 @@ function Footer() {
               <ul className="mt-5 space-y-3 text-muted-foreground">
                 {section.links.map((link: string) => (
                   <li key={link}>
-                    <a
-                      href="#"
-                      onClick={(event) => {
-                        event.preventDefault();
-                        showComingSoonToast();
-                      }}
+                    <button
+                      type="button"
+                      onClick={showComingSoonToast}
                       className="transition-colors hover:text-foreground"
                     >
                       {link}
-                    </a>
+                    </button>
                   </li>
                 ))}
               </ul>

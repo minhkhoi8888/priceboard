@@ -28,7 +28,6 @@ import {
   toChartTime,
 } from "../utils/chart";
 import { Icon } from "./Icon";
-import { useSmoothLoading } from "../hooks/useSmoothLoading";
 
 interface CandlestickChartProps {
   livePrice: number;
@@ -94,7 +93,6 @@ const CandlestickChart = ({
   const [interval, setInterval] = useState<ChartInterval>("1d");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const showLoadingOverlay = useSmoothLoading(isLoading);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const chartRef = useRef<IChartApi | null>(null);
   const candleSeriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
@@ -442,7 +440,7 @@ const CandlestickChart = ({
       <div className="relative bg-card">
         <div ref={containerRef} className="h-100 w-full" />
 
-        {showLoadingOverlay ? (
+        {isLoading ? (
           <div className="absolute inset-0 bg-card/74 p-4 backdrop-blur-sm">
             <div className="h-full w-full rounded-2xl bg-card/80" />
           </div>

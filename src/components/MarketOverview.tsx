@@ -33,12 +33,7 @@ const MarketOverview = ({
       <div className="flex flex-col gap-12 lg:flex-row lg:items-center lg:justify-start">
         <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-6">
           <div className="min-w-30">
-            <div
-              onClick={() => {
-                if (onOpenMarketOverlay) onOpenMarketOverlay();
-              }}
-              className="flex items-center gap-2"
-            >
+            <div className="flex items-center gap-2">
               <p className="uppercase text-slate-500">
                 {market?.displayPair ?? "Spot"}
               </p>
@@ -46,6 +41,7 @@ const MarketOverview = ({
                 <button
                   type="button"
                   aria-label="Open markets"
+                  onClick={onOpenMarketOverlay}
                   className="text-muted-foreground transition-colors hover:text-foreground lg:hidden"
                 >
                   <Icon name="chev-down" size={16} />
